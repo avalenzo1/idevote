@@ -1,29 +1,39 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import Feather from '@expo/vector-icons/Feather';
+import { Tabs } from "expo-router";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+  return <Tabs>
+    <Tabs.Screen name="index" options={{
+      headerTitle: "Home",
+      title: "Home",
+      headerShown: false,
+      tabBarIcon: ({focused, color}) => (
+        <Feather name="home" size={24} color={color} />
+      )
+    }}></Tabs.Screen>
+    <Tabs.Screen name="bible" options={{
+      headerTitle: "Bible",
+      title: "Bible",
+      headerShown: false,
+      tabBarIcon: ({focused, color}) => (
+        <Feather name="book" size={24} color={color} />
+      )
+    }}></Tabs.Screen>
+    <Tabs.Screen name="fellowship" options={{
+      headerTitle: "Fellowship",
+      title: "Fellowship",
+      headerShown: false,
+      tabBarIcon: ({focused, color}) => (
+        <Feather name="users" size={24} color={color} />
+      )
+    }}></Tabs.Screen>
+    <Tabs.Screen name="settings" options={{
+      headerTitle: "Settings",
+      title: "Settings",
+      headerShown: false,
+      tabBarIcon: ({focused, color}) => (
+        <Feather name="settings" size={24} color={color} />
+      )
+    }}></Tabs.Screen>
+  </Tabs>;
 }
