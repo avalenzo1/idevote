@@ -1,6 +1,6 @@
 # Welcome to iDevote!
 
-Spending time with God shouldn't be a hassle.
+Spending time with God shouldn't be a hassle. Devote your time to God now!
 
 ## Creating and Maintaining Good Habits
 
