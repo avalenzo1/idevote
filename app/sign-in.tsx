@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import { Text, TextInput, View } from 'react-native';
 import { useState } from 'react';
+import { Image } from 'react-native';
 
 import { useSession } from '@/contexts/auth';
 import { globalStyles } from '@/constants/styles';
@@ -8,17 +9,19 @@ import { Button } from '@react-navigation/elements';
 
 export default function SignIn() {
     const { signIn, signUp } = useSession();
-    const [email, setEmail] = useState('john.doe@example.com',);
-    const [password, setPassword] = useState('password');
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Image source={require('@/assets/images/icon.png')} style = {{width: 200, height: 200}}/>
+
             <View>
                 <TextInput placeholder="Email" style={globalStyles.input} placeholderTextColor="grey" onChangeText={setEmail}
                     value={email}></TextInput>
 
                 <TextInput placeholder="Password" style={globalStyles.input} placeholderTextColor="grey" onChangeText={setPassword}
-                    value={password}></TextInput>
+                    value={password} secureTextEntry={true}></TextInput>
             </View>
 
             <Button
@@ -32,7 +35,7 @@ export default function SignIn() {
                 Sign In
             </Button>
 
-            <Button
+            {/* <Button
                 onPress={() => {
                     signUp(email, password);
                     // Navigate after signing in. You may want to tweak this to ensure sign-in is
@@ -41,7 +44,7 @@ export default function SignIn() {
                 }}
             >
                 Sign Up
-            </Button>
+            </Button> */}
         </View>
     );
 }

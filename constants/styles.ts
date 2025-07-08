@@ -10,11 +10,11 @@ export const globalStyles = StyleSheet.create({
   },
   input: {
     width: 250,
-    height: 40,
+    height: 45,
     margin: 12,
     borderWidth: 1,
     borderColor: "grey",
-    borderRadius: 5,
+    borderRadius: 15,
     padding: 10,
     tintColor: 'blue'
   },

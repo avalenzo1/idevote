@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import { View, Button, ScrollView, Text } from "react-native";
 
-function MemoryScripture() {
+export default function MemoryScripture() {
   const [recognizing, setRecognizing] = useState(false);
   const [transcript, setTranscript] = useState("");
 

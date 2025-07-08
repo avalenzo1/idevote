@@ -31,9 +31,34 @@ export function SessionProvider({ children }: PropsWithChildren) {
     return (
         <AuthContext
             value={{
-                signIn: (email: string, password: string) => {
-                    // Perform sign-in logic here
-                    setSession('xxx');
+                signIn: async (identification: string, password: string) => {
+                    const user = {
+                        identification: identification,
+                        password: password
+                    };
+
+                    try {
+                        // Perform sign-up logic here
+                        const response = await fetch("http://192.168.1.66:8080/auth/login", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(user),
+                        });
+
+                        const json = await response.json();
+
+                        if (!response.ok) {
+                            console.log(json);
+                            throw Error(json.error);
+                        }
+
+                        setSession(json.token);
+
+                    } catch (error: any) {
+                        console.error(error.message);
+                    }
                 },
 
                 signUp: async (email: string, password: string) => {
@@ -52,16 +77,9 @@ export function SessionProvider({ children }: PropsWithChildren) {
                             body: JSON.stringify(user),
                         });
 
+                        const json = await response.json();
 
-
-                        if (response.ok) {
-                            const json = await response.json();
-                            console.log(json);
-                        } else {
-                            console.error(response.statusText)
-                        }
-
-                        
+                        console.log(json);
                     } catch (error: any) {
                         console.error(error.message);
                     }

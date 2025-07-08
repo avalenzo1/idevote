@@ -1,13 +1,6 @@
 import { StyleSheet, View, Button } from 'react-native';
 import { globalStyles } from '@/constants/styles';
-import * as WebBrowser from 'expo-web-browser';
 import { useSession } from '@/contexts/auth';
-
-
-const styles = StyleSheet.create({
-
-});
-
 
 export default function Settings() {
   const { signOut } = useSession();
